@@ -218,3 +218,69 @@
 .contact-details span {
   color: #999999 ;
 }
+
+@media (max-width: 768px) {
+  .chatlist-header {
+    font-size: 18px; 
+  }
+
+  .add-contact-btn {
+    width: 40%; 
+    bottom: 20px; 
+    position: fixed; 
+    left: 30%; 
+  }
+
+  .search-bar {
+    width: 80%; 
+  }
+
+  .chatlist {
+    padding: 5px;
+  }
+
+  .chat-item {
+    padding: 10px; 
+  }
+
+  .modal-content {
+    width: 90%; 
+  }
+
+  
+  .profile {
+    top: 10px;
+    right: 10px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px; /
+  }
+}
+
+
+@media (max-width: 480px) {
+  .chatlist-header {
+    font-size: 16px; 
+  }
+
+  .add-contact-btn {
+    width: 60%; 
+    bottom: 20px;
+    left: 20%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .chat-item {
+    padding: 8px;
+  }
+
+  .avatar {
+    width: 35px;
+    height: 35px;
+  }
+}
