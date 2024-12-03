@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./ChatList.css";
+import ContactList from './ContactList/ContactList'; // Importamos ContactList
+import './ChatList.css';
 
-// Lista de usuarios con sus fotos de perfil
 const users = [
   {
     id: 1,
@@ -19,10 +19,8 @@ const users = [
     name: "Carlos López",
     avatar: "https://via.placeholder.com/50?text=Carlos",
   },
-  
 ];
 
-// Simulo los mensajes en el chat
 const sampleMessages = {
   1: [
     { text: "como estas?", sender: "me", time: "10:30 AM" },
@@ -40,27 +38,20 @@ const sampleMessages = {
 
 const ChatList = () => {
   const [chats, setChats] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para la barra de busqueda
+  const [searchTerm, setSearchTerm] = useState("");
+  const [contacts, setContacts] = useState([]);
+  const [newContact, setNewContact] = useState({ name: '', avatar: '' });
+  const [showModal, setShowModal] = useState(false); // Estado para mostrar/ocultar el modal
+  const [image, setImage] = useState(null); // Estado para la imagen seleccionada
 
   useEffect(() => {
-    // Convertir las horas de los mensajes en formato de 24 horas para poder ordenarlos
-    const convertTo24HourFormat = (time) => {
-      const [hour, minute] = time.split(":");
-      const [amPm] = time.split(" ").slice(-1);
-      let hour24 = parseInt(hour, 10);
-      if (amPm === "PM" && hour24 !== 12) hour24 += 12;
-      if (amPm === "AM" && hour24 === 12) hour24 = 0;
-      return hour24 * 60 + parseInt(minute, 10); // Devuelve el tiempo en minutos
-    };
-
-    // Crea una lista de chats ordenados por el ultimo mensaje
     const chatList = users.map((user) => {
       const messages = sampleMessages[user.id];
-      
-      // Ordena los mensajes de cada usuario por tiempo
-      messages.sort((a, b) => convertTo24HourFormat(b.time) - convertTo24HourFormat(a.time));
-      
-      const lastMessage = messages[0]; // El ultimo mensaje despues de ordenar
+      messages.sort((a, b) => {
+        return new Date(`1970-01-01T${b.time}`) - new Date(`1970-01-01T${a.time}`);
+      });
+
+      const lastMessage = messages[0];
       return {
         ...user,
         lastMessage: lastMessage.text,
@@ -71,10 +62,29 @@ const ChatList = () => {
     setChats(chatList);
   }, []);
 
-  // Filtrar los chats por nombre de usuario segun lo ingresado en la barra de busqueda
   const filteredChats = chats.filter((chat) =>
     chat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Maneja la adición de nuevos contactos
+  const handleAddContact = () => {
+    if (newContact.name) {
+      const newId = users.length + contacts.length + 1;
+      const newUser = {
+        ...newContact,
+        id: newId,
+        avatar: image || `https://via.placeholder.com/50?text=${newContact.name.charAt(0)}`,
+      };
+      setContacts([...contacts, newUser]);
+      setChats([
+        ...chats,
+        { ...newUser, lastMessage: "Nuevo contacto", time: "Ahora" },
+      ]);
+      setNewContact({ name: '', avatar: '' });
+      setImage(null); // Limpiar la imagen después de agregar el contacto
+      setShowModal(false); // Cerrar el modal después de agregar el contacto
+    }
+  };
 
   return (
     <div className="chatlist-container">
@@ -88,6 +98,42 @@ const ChatList = () => {
           className="search-bar"
         />
       </div>
+
+      <button className="add-contact-btn" onClick={() => setShowModal(true)}>Agregar Contacto</button>
+
+      {/* Modal para agregar un nuevo contacto */}
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Agregar Nuevo Contacto</h2>
+            <input
+              type="text"
+              placeholder="Nombre del contacto"
+              value={newContact.name}
+              onChange={(e) => setNewContact({ ...newContact, name: e.target.value })}
+            />
+            <input
+              type="file"
+              onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onloadend = () => setImage(reader.result);
+                  reader.readAsDataURL(file);
+                }
+              }}
+            />
+            {image && <img src={image} alt="Vista previa" className="preview-image" />}
+            <button onClick={handleAddContact}>Agregar</button>
+            <button onClick={() => setShowModal(false)}>Cancelar</button>
+          </div>
+        </div>
+      )}
+
+      <ContactList
+        contacts={contacts}
+      />
+
       <div className="chatlist">
         {filteredChats.map((chat) => (
           <Link to={`/chat/${chat.id}`} key={chat.id} className="chat-item">

@@ -1,19 +1,21 @@
-import React from 'react';
-import './ContactList.css';  
+import React from "react";
 
-const ContactList = ({ contacts, onAddContact, onOpenChat }) => {
+const ContactList = ({ contacts }) => {
   return (
-    <div className="contact-list">
-      <h2>Lista de Contactos</h2>
-      <ul>
-        {contacts.map((contact, index) => (
-          <li key={index} onClick={() => onOpenChat(contact)} className="contact-item">
-            <img src={contact.photo || '/path/to/default-photo.jpg'} alt="Foto de perfil" className="contact-photo" />
-            <span>{contact.name}</span>
+    <div className="contactlist-container">
+      <h2>Contactos</h2>
+      <ul className="contact-list">
+        {contacts.map((contact) => (
+          <li key={contact.id}>
+            <div className="contact-avatar">
+              <img src={contact.avatar} alt={contact.name} className="avatar" />
+            </div>
+            <div className="contact-info">
+              <p>{contact.name}</p>
+            </div>
           </li>
         ))}
       </ul>
-      <button onClick={onAddContact} className="add-contact-btn">Agregar Contacto</button>
     </div>
   );
 };

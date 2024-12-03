@@ -77,13 +77,4 @@ const Chat = () => {
   );
 };
 
-const playNotificationSound = () => {
-    const audio = new Audio('https://www.wavsource.com/snds_2020-10-01_3728627494378403/sfx/boing_spring.wav'); // Asegúrate de tener una URL válida
-    audio.play();
-  };
-  
-  // Llamar a esta función cuando llegue un nuevo mensaje
-  playNotificationSound();
-  
-
 export default Chat;
