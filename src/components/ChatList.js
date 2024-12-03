@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ContactList from './ContactList/ContactList';
+import ContactList from './ContactList/ContactList'; 
 import './ChatList.css';
 
 const users = [
