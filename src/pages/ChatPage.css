@@ -1,0 +1,152 @@
+/* Contenedor principal del chat */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #075e54;
+  font-family: 'Arial', sans-serif;
+  padding: 0px;
+}
+
+/* Estilo del encabezado del chat */
+.chat-header {
+  padding: 15px;
+  display: flex;
+  align-items: center; /* Alinea los elementos verticalmente */
+  justify-content: flex-start; /* Alinea a la izquierda */
+  border-bottom: 1px solid #ddd;
+  background-color: #ffffff;
+}
+
+
+/* Foto de perfil */
+.chat-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.chat-avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Contenedor para el nombre y estado */
+.chat-user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+/* Nombre del usuario */
+.chat-user-info h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estado del usuario (En línea o desconectado) */
+.chat-status {
+  font-size: 12px;
+  color: #4caf50; /* Verde para indicar que está en línea */
+}
+
+/* Botón de Volver atrás */
+.back-button {
+  background-color: #075e54;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background-color: #128c7e;
+}
+
+/* Contenedor de los mensajes */
+.messages {
+  padding: 15px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column; /* Hace que los nuevos mensajes aparezcan al final */
+}
+
+/* Estilo de los mensajes del usuario */
+.my-message {
+  text-align: start;
+  display: flex;
+  background-color: #dcf8c6;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px 10px 0 10px;
+  min-width: 50%;
+  
+  align-self: flex-end; /* Alinea los mensajes enviados a la derecha */
+}
+
+/* Estilo de los mensajes recibidos */
+.their-message {
+  background-color: white;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 10px 10px 10px 0;
+  max-width: 100%;
+  align-self: flex-start; /* Alinea los mensajes recibidos a la izquierda */
+  border: 1px solid #ddd;
+}
+
+/* Hora del mensaje */
+.message-time {
+  font-size: 12px;
+  color: gray;
+  margin-top: 5px;
+}
+
+/* Botón de eliminar mensaje */
+.delete-message {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 12px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.delete-message:hover {
+  text-decoration: underline;
+}
+
+/* Área de input de mensajes */
+.input-area {
+  padding: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ddd;
+}
+
+/* Input del mensaje */
+input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+/* Botón de enviar */
+button {
+  padding: 10px 20px;
+  background-color: #075e54;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}

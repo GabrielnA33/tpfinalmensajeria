@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.chat-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.chat-item h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.chat-item p {
+  margin: 5px 0 0;
+  color: #888;
+}
+
+.messages {
+  padding: 10px;
+  height: 300px;
+  overflow-y: scroll;
+  background: white;
+}
+
+.my-message {
+  text-align: right;
+  background-color: #dcf8c6;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.their-message {
+  text-align: left;
+  background-color: #fff;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  width: 15%;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+
+.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.my-message {
+  text-align: right;
+  background-color: #dcf8c6;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 0 10px;
+}
+
+.their-message {
+  text-align: left;
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px 10px 10px 0;
+  border: 1px solid #ddd;
+}
+
+
+@media (max-width: 600px) {
+  .chat-item {
+    font-size: 14px;
+  }
+
+  .messages {
+    height: 200px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+}
